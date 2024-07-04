@@ -1,0 +1,38 @@
+_BASE_: "./Base-RCNN-FPN.yaml"
+MODEL:
+  MASK_ON: False
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NAME: "OpenSetStandardROIHeads"
+    NUM_CLASSES: 81
+    NUM_KNOWN_CLASSES: 20
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNSeparateConvFCHead"
+    OUTPUT_LAYERS: "PUDetFastRCNNOutputLayers"
+    CLS_AGNOSTIC_BBOX_REG: True
+DATASETS:
+  TRAIN: ('voc_2007_train', 'voc_2012_trainval')
+  TEST: ('voc_2007_test', 'voc_coco_20_40_test', 'voc_coco_20_60_test', 'voc_coco_20_80_test', 'voc_coco_2500_test', 'voc_coco_5000_test', 'voc_coco_10000_test', 'voc_coco_20000_test')
+SOLVER:
+  IMS_PER_BATCH: 8
+  BASE_LR: 0.010
+  STEPS: (42000, 58000)
+  MAX_ITER: 64000
+  WARMUP_ITERS: 100
+  AMP:
+    ENABLED: True
+CCLOSS:
+   INIT: "one-hot"
+   IOU_THR: 0.0
+   OUT_DIM: 256
+   WEIGHT: 0.1
+UALOSS:
+  LOSS_TYPE: log
+  START_ITER: 100
+  EDL_START_ITER: 12800
+  WEIGHT: 0.5
+  EDL_WEIGHT: 0.1
+  TOPK: 3
+  LAM: 1.0
