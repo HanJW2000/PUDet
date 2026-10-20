@@ -1,8 +1,6 @@
 ## PUDet
 
-> **Pseudo-unknown uncertainty learning for open set object detection
-
-**<br>
+> **Pseudo-unknown uncertainty learning for open set object detection**<br>
 
 PUDet: PUDet is implemented based on [detectron2](https://github.com/facebookresearch/detectron2) and Opendet
 
