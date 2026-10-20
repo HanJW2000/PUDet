@@ -1,6 +1,8 @@
 ## PUDet
 
-> **Pseudo-unknown Uncertainty for Open Set Object Detection**<br>
+> **Pseudo-unknown uncertainty learning for open set object detection
+
+**<br>
 
 PUDet: PUDet is implemented based on [detectron2](https://github.com/facebookresearch/detectron2) and Opendet
 
@@ -20,3 +22,4 @@ The training process is the same as detectron2.
 ```
 python tools/train_net.py --num-gpus 4 --config-file configs/faster_rcnn_R_50_FPN_6x_pudet.yaml
 ```
+
